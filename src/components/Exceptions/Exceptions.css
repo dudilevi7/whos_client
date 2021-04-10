@@ -1,0 +1,19 @@
+.expContainer{
+    margin : 0 auto;
+    margin-top: 100px;
+    text-align: center;
+    width: 600px;
+}
+
+.errAlert{ 
+    padding : 20px;
+    background-color: #f44336;
+    color : white;
+    border-radius: 5px;
+}
+.loadAlert{
+    margin-top: 10px;
+    padding : 1px;
+    border-radius: 5px;
+    color: #ccc;
+}

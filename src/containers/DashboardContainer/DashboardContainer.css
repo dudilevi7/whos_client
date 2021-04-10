@@ -1,0 +1,32 @@
+.dashContainer{
+    margin : 25px;
+    padding-inline : 30px;
+}
+.mblock{
+    margin-block: 10px;
+}
+.title {
+    text-shadow: 1px 5px #ccc;
+}
+th{
+    color : #ccc;
+}
+.imgUpd{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+@media only screen and (max-width: 750px) {
+    .dashContainer{
+        margin : 0px;
+        margin-top: 20px;
+        padding-inline: 5px;
+    }
+    tr{
+        display: flex;
+        flex-direction: column;
+        margin : 10px;
+    }
+}

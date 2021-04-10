@@ -1,0 +1,14 @@
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: 50px;
+    margin-inline: 30px;
+}
+
+@media only screen and (max-width: 680px) {
+    .cardContainer{
+        padding-inline: 15px;
+    }
+
+}

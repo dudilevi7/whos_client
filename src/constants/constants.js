@@ -1,0 +1,1 @@
+export const WHOS_API = "http://localhost:3001/questions/get";

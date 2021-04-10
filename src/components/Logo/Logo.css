@@ -1,0 +1,40 @@
+.logo {
+    margin-top: 10px;
+    height: auto;
+    width: 25%;
+    cursor: pointer;
+    justify-items: center;
+    animation: bounceIn 1s;
+    transform: rotate(0deg) scale(1) translateZ(0);
+    transition: all 0.5s cubic-bezier(.8,1.8,.75,.75);
+}
+.logo:hover{
+    transform: rotate(3deg) scale(1.1);
+}
+@keyframes bounceIn {
+    0% {
+      opacity: 1;
+      transform: scale(.3);
+    } 
+  
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    } 
+  
+    70% {
+      opacity: 1;
+      transform: scale(.9);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+@media only screen and (max-width: 680px) {
+    .logo{
+        width: 70%;
+    }
+
+}
