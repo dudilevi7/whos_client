@@ -1,11 +1,11 @@
-const getRequest = async(url,options)=>{
+const fetchData = async(url,options)=>{
     try {
         const response = await fetch(url,options);
         const data = await response.json();
         if (data) return data;
     } catch (err) {
-        return err;
+        console.log(err);
     }
 
 }
-export default getRequest;
+export default fetchData;

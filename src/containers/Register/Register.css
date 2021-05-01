@@ -15,8 +15,8 @@ th{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    margin-block: 10px;
 }
 @media only screen and (max-width: 750px) {
     .dashContainer{

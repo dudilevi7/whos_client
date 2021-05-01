@@ -7,7 +7,7 @@ export const ErrorPage = ({ error })=>{
         <div className="expContainer">
             <h2>Error Message!</h2>
             <div className="errAlert">
-                <strong>{error.message}</strong>
+                <strong>{error}</strong>
             </div>
         </div>
     )
