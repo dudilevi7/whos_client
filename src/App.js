@@ -10,14 +10,6 @@ import Routes from './routes/Routes';
 const App = props => {
   const authData = useSelector(state => state.auth);
 
-  // useEffect(() => {
-  //   const fetchQues = async () => {
-  //     const data = await fetchData(WHOS_API);
-  //     if (data) setData(data)
-  //   }
-  //   fetchQues();
-  // }, [])
-
   useEffect(() => {
     if (authData)
       console.log(authData)
