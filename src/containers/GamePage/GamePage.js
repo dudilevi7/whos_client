@@ -1,7 +1,7 @@
 import { Card, Container } from '@material-ui/core'
 import React, { useEffect, useState } from 'react';
 import './GamePage.css'
-import { WHOS_API } from '../../constants/constants';
+import { REACT_APP_WHOS_API , REACT_APP_QUES_ROUTE } from '../../constants/constants';
 import fetchData from '../../services/fetchData';
 import { LoaderSpinner } from '../../components/Exceptions/Exceptions';
 import gameService from '../../services/gameService';
@@ -13,7 +13,7 @@ const GamePage = props => {
 
     useEffect(() => {
         const fetchQuestions = async () => {
-            const data = await fetchData(WHOS_API);
+            const data = await fetchData(REACT_APP_WHOS_API+REACT_APP_QUES_ROUTE);
             if (data) {
                 gameService.shuffleArray(data); //shuffle the order of the questions
                 setQuestions(data)

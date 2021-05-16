@@ -1,4 +1,4 @@
-import { LOGIN_API } from "../../constants/constants"
+import {REACT_APP_WHOS_API, REACT_APP_LOGIN_ROUTE } from "../../constants/constants"
 import fetchData from "../../services/fetchData"
 import { saveToLocalStorage } from "../../services/validateService"
 import { LOGIN_FAILED, LOGIN_START, SET_LOGIN, SET_LOGOUT } from "./authTypes"
@@ -14,7 +14,7 @@ export const setLogin = (username , password , rememberMe) => {
                 password: password
             })
         }
-        const data = await fetchData(LOGIN_API, options)
+        const data = await fetchData(REACT_APP_WHOS_API+REACT_APP_LOGIN_ROUTE, options)
             if (data) {
                 dispatch({type : SET_LOGIN , userData : data })
                 if (rememberMe)

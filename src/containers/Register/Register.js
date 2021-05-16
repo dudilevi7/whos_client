@@ -1,22 +1,18 @@
-import { useEffect, useState } from "react";
-import CustomTable from "../../components/Table/CustomTable"
+import {useState} from "react";
 import './Register.css'
 import axios from "axios";
-import { Avatar, Card, Container, FormControlLabel, Input, TextField } from "@material-ui/core";
+import { Card, Container, TextField } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { setLogout } from "../../redux/auth/authActions";
-import { WHOS_API } from "../../constants/constants";
-import fetchData from "../../services/fetchData";
+import { REACT_APP_WHOS_API,REACT_APP_REGISTER_ROUTE } from "../../constants/constants";
 import ResponsiveTypography from "../../components/customs/ResponsiveTypography";
 import LDButton from "../../components/customs/LDButton";
-import { AddCircle, PhotoCamera } from "@material-ui/icons";
+import { PhotoCamera } from "@material-ui/icons";
 import { validatePassword, validateUsername } from "../../services/validateService";
 import { SET_LOGIN } from "../../redux/auth/authTypes";
-import { useHistory } from "react-router";
 
 const Register = props => {
-
-    const [data, setData] = useState([]);
+  
     const [file, setFile] = useState();
 
     const [username , setUsername] = useState('');
@@ -24,15 +20,6 @@ const Register = props => {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const fetchQues = async () => {
-            const newData = await fetchData(WHOS_API);
-            if (newData) setData(newData)
-        }
-        fetchQues();
-    }, [])
-
-    
     const usernameChangeHandler = event => { setUsername(event.target.value) }
     const passwordChangeHandler = event => { setPassword(event.target.value) }
 
@@ -68,7 +55,7 @@ const Register = props => {
         formData.append('file', file);
         formData.append('restData', json);
 
-        axios.post("http://localhost:3001/user/register", formData)
+        axios.post(REACT_APP_WHOS_API+REACT_APP_REGISTER_ROUTE, formData)
             .then(response => {
                 dispatch({type : SET_LOGIN, userData : response.data})
             })

@@ -1,3 +1,7 @@
-export const WHOS_API = "http://localhost:3001/questions/get";
-export const LOGIN_API = "http://localhost:3001/user/signin";
-export const IMG_API = "http://localhost:3001/public/images/"
+const {
+    REACT_APP_WHOS_API,REACT_APP_LOGIN_ROUTE,REACT_APP_REGISTER_ROUTE,REACT_APP_QUES_ROUTE,REACT_APP_IMG_ROUTE
+} = process.env;
+
+export {
+    REACT_APP_WHOS_API, REACT_APP_LOGIN_ROUTE, REACT_APP_REGISTER_ROUTE, REACT_APP_QUES_ROUTE, REACT_APP_IMG_ROUTE,
+}

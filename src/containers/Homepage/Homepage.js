@@ -10,16 +10,9 @@ const Homepage = props => {
 
     return (
 
-        <Container maxWidth="md">
+        <Container maxWidth="xs">
             <Card className="cardContainer">
-                <ResponsiveTypography variant="h5">התחבר באמצעות</ResponsiveTypography>
-                <LDButton bgcolor1="#0079ED" color="white">
-                    התחבר עם פייסבוק
-                    </LDButton>
-                <LDButton bgcolor1="tomato" color="white">
-                    התחבר עם גוגל
-                    </LDButton>
-                <LDButton onClick={() => history.push('/login')} bgcolor1="#B2B2B2" color="white">
+                <LDButton onClick={() => history.push('/login')} bgcolor1="#0079ED" color="white">
                     התחברות רגילה
                     </LDButton>
                 <LDButton onClick={() => history.push('/register')} variant="text" bgcolor1="white" color="#2b2b2b" border="#2b2b2b">

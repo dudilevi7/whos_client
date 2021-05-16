@@ -7,7 +7,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLogout } from '../../redux/auth/authActions';
 import { useHistory } from 'react-router';
-import { IMG_API } from '../../constants/constants';
+import { REACT_APP_WHOS_API,REACT_APP_IMG_ROUTE } from '../../constants/constants';
 
 const useStyles = makeStyles({
     root : {
@@ -42,7 +42,9 @@ const Navigation = props => {
         dispatch(setLogout());
         history.push('/')
     }
-
+    const statsClick = () => {
+        history.push('/statistics')
+    }
     return (
         <div>
             <div className="webBar">
@@ -50,18 +52,18 @@ const Navigation = props => {
                 <React.Fragment key="right">
                     <Drawer variant='persistent' anchor='right' open={showDrawer} onClose={() => setShowDrawer(false)}>
                         <Close htmlColor='black' onClick={() => setShowDrawer(false)} />
-                        <Avatar className={classes.root2} src={IMG_API + usernameImg} onClick={() => setShowDrawer(true)}  />
+                        <Avatar className={classes.root2} src={REACT_APP_WHOS_API+REACT_APP_IMG_ROUTE + usernameImg} onClick={() => setShowDrawer(true)}  />
                         <strong>{username}</strong>
                         <Divider/>
                         <div className="barBtn">בית</div>
                         <div className="barBtn">פרופיל</div>
-                        <div className="barBtn">סטטיסטיקה</div>
+                        <div className="barBtn" onClick={statsClick}>סטטיסטיקה</div>
                     </Drawer>
                 </React.Fragment>
                 {isLoggedIn &&
                     (
                         <div className="logout">
-                            <Avatar className={classes.root} src={IMG_API + usernameImg} onClick={() => setShowDrawer(true)}  />
+                            <Avatar className={classes.root} src={REACT_APP_WHOS_API+REACT_APP_IMG_ROUTE + usernameImg} onClick={() => setShowDrawer(true)}  />
                             <LDButton onClick={onLogoutClick} startIcon={<ExitToAppIcon />} size="small" bgcolor1="whitesmoke" border="none" color="#0079ED" shadow='transparent'>התנתק</LDButton>
                         </div>
                     )
