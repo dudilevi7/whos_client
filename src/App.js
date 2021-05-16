@@ -5,7 +5,7 @@ import './App.css';
 import Copyright from './components/Copyright/Copyright';
 import {  LoaderSpinner } from './components/Exceptions/Exceptions';
 import Header from './containers/Header/Header';
-import Routes from './routes/Routes';
+import Routes from './routes/routes';
 
 const App = props => {
   const authData = useSelector(state => state.auth);
