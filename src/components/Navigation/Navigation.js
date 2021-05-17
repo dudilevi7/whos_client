@@ -42,22 +42,26 @@ const Navigation = props => {
         dispatch(setLogout());
         history.push('/')
     }
-    const statsClick = () => {
+    const onStatsClick = () => {
+        setShowDrawer(false)
         history.push('/statistics')
+    }
+    const onHomeClick = () => {
+        setShowDrawer(false)
+        history.push('/homepage')
     }
     return (
         <div>
             <div className="webBar">
-               
                 <React.Fragment key="right">
-                    <Drawer variant='persistent' anchor='right' open={showDrawer} onClose={() => setShowDrawer(false)}>
+                    <Drawer variant='persistent' anchor='right' open={showDrawer} onClose={() => setShowDrawer(false)} transitionDuration={500}>
                         <Close htmlColor='black' onClick={() => setShowDrawer(false)} />
                         <Avatar className={classes.root2} src={REACT_APP_WHOS_API+REACT_APP_IMG_ROUTE + usernameImg} onClick={() => setShowDrawer(true)}  />
                         <strong>{username}</strong>
                         <Divider/>
-                        <div className="barBtn">בית</div>
+                        <div className="barBtn" onClick={onHomeClick}>בית</div>
                         <div className="barBtn">פרופיל</div>
-                        <div className="barBtn" onClick={statsClick}>סטטיסטיקה</div>
+                        <div className="barBtn" onClick={onStatsClick}>סטטיסטיקה</div>
                     </Drawer>
                 </React.Fragment>
                 {isLoggedIn &&

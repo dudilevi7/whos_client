@@ -16,7 +16,10 @@ const GamePage = props => {
             const data = await fetchData(REACT_APP_WHOS_API+REACT_APP_QUES_ROUTE);
             if (data) {
                 gameService.shuffleArray(data); //shuffle the order of the questions
-                setQuestions(data)
+                setTimeout(() => {
+                    setQuestions(data)    
+                }, 500);
+                
             }
         }
         fetchQuestions();
