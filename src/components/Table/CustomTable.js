@@ -1,47 +1,26 @@
-import React, { createContext, useState } from 'react';
-import { createMuiTheme, FormControlLabel, MenuItem, MuiThemeProvider, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, withStyles } from '@material-ui/core';
+import React, { useEffect } from 'react';
+import { Avatar, createMuiTheme, MuiThemeProvider, TextField, Typography } from '@material-ui/core';
 import MUIDataTable from 'mui-datatables';
-
-// const TableHeader = withStyles(theme => ({
-//     root: {
-//         backgroundColor: '#2b2b2b'
-//     }
-// }))(TableHead)
-
-// const TableHeaderCell = withStyles(theme => ({
-//     root: {
-//         color: 'white',
-//         fontWeight: 'bold'
-//     }
-// }))(TableCell)
+import { REACT_APP_IMG_ROUTE, REACT_APP_WHOS_API } from '../../constants/constants';
 
 let theme = (bgcolor , color) =>
     createMuiTheme({
         overrides: {
             
-            MUIDataTableBodyCell: {
-                root: {
-
-                }
-            },
-
               MUIDataTableHeadCell: {
                 fixedHeader: {
                     backgroundColor: bgcolor          
                  }
               },
-              MuiButton :{
-                  label : {
-                      color : color
-                  }
-              },
             MUIDataTableToolbar: {
                 root : {
                     backgroundColor: bgcolor  ,
-                    color : color,
+                    
                 },
                 left: {
                     flex: 'none',
+                    color : color,
+                
                 }
             },
         },
@@ -49,24 +28,44 @@ let theme = (bgcolor , color) =>
     
 const CustomTable = props => {
     const { data, fields, onDelete, color , bgcolor ,...others } = props;
-
+    
     const columns = [
         {
-            name: "id",
+            name: "#",
+            options : {
+                customBodyRender: place => {
+                    if (place === 1) 
+                    return <Avatar style = {{ fontSize : '14px',backgroundColor: 'gold'}}>{place}</Avatar>
+                if (place === 2)
+                    return <Avatar style = {{ fontSize : '14px',backgroundColor: 'silver'}}>{place}</Avatar>
+                if (place === 3)
+                    return <Avatar style = {{ fontSize : '14px',backgroundColor: '#cd7f32' }}>{place}</Avatar>
+                else
+                    return <Avatar style = {{ fontSize : '14px',backgroundColor: '#2b2b2b' }}>{place}</Avatar>
+                  }
+            }
         },
         {
-            name: "question",
+            name: "Username",
+        },
+        {
+            name: "",
             options: {
-                customBodyRender: value => {
-                  return ( <bdi style={{fontWeight:'bold'}}>{value}</bdi>)
+                customBodyRender: usernameImg => {
+                  return ( <Avatar src={REACT_APP_WHOS_API+REACT_APP_IMG_ROUTE + usernameImg}  />)
                 }
             }
         },
         {
-            name: "type",
+            name: "Result",
         },
         {
-            name: "answers",
+            name: "Time",
+            options: {
+                customBodyRender: time => {
+                  return ( <div>{new Date(time).toLocaleDateString()}</div>)
+                }
+            }
         },
     ]
 
@@ -75,97 +74,27 @@ const CustomTable = props => {
         filterType: "dropdown",
         selectableRows: 'none',
         responsive : 'vertical',
-        tableBodyHeight : '400px',
+        tableBodyHeight : '600px',
     };
 
     const rowsData = () => {
-        return data.map((element) => {
-            const { _id, question, type, answers } = element;
-            return [_id, question, type, answers]
+        return data.map((element , index) => {
+            const { username, img, highScore } = element._id;
+            return [index+1 ,username, img, highScore.result, highScore.time]
         });
     }
     
 
-    // const rowsData = () => {
-    //     return data.map((value,key)=>{
-    //             const {_id , question , type , answers } = value;
-    //             return (
-    //                 <TableRow key = {key}>
-    //                     <TableCell>{_id}</TableCell>
-    //                     <TableCell>{question}</TableCell>
-    //                     <TableCell>{type}</TableCell>
-    //                     <TableCell>{answers}</TableCell>
-    //                     <TableCell>
-    //                         <button onClick={()=>onDelete(_id)}>Delete</button>
-    //                     </TableCell>
-    //                 </TableRow>
-    //             )
-    //     })
-    // }
-    // const fieldsData = () => {
-    //     return fields.map((field, key) => {
-    //         return <TableHeaderCell key={key}>{field}</TableHeaderCell>
-    //     })
-    // }
-
     return (
-        // <TableContainer component={Paper}>
-        //     <Table aria-label="simple_table">
-        //         <TableHeader>
-        //             <TableRow>
-        //                 {fieldsData()}
-        //             </TableRow>
-        //         </TableHeader>
-        //         <TableBody>
-        //              {rowsData()}
-        //         </TableBody>
-        //     </Table>
-        // </TableContainer>
         <React.Fragment>
-            {/* <FormControl>
-            <InputLabel id="demo-simple-select-label">Responsive Option</InputLabel>
-            <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={responsive}
-                style={{ width: "200px", marginBottom: "10px", marginRight: 10 }}
-                onChange={(e) => setResponsive(e.target.value)}
-            >
-                <MenuItem value={"vertical"}>vertical</MenuItem>
-                <MenuItem value={"standard"}>standard</MenuItem>
-                <MenuItem value={"simple"}>simple</MenuItem>
-    
-                <MenuItem value={"scroll"}>scroll (deprecated)</MenuItem>
-                <MenuItem value={"scrollMaxHeight"}>
-                scrollMaxHeight (deprecated)
-                </MenuItem>
-                <MenuItem value={"stacked"}>stacked (deprecated)</MenuItem>
-            </Select>
-            </FormControl>
-            <FormControl>
-            <InputLabel id="demo-simple-select-label">Table Body Height</InputLabel>
-            <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={tableBodyHeight}
-                style={{ width: "200px", marginBottom: "10px", marginRight: 10 }}
-                onChange={(e) => setTableBodyHeight(e.target.value)}
-            >
-                <MenuItem value={""}>[blank]</MenuItem>
-                <MenuItem value={"400px"}>400px</MenuItem>
-                <MenuItem value={"800px"}>800px</MenuItem>
-                <MenuItem value={"100%"}>100%</MenuItem>
-            </Select>
-            </FormControl> */}
             <MuiThemeProvider theme={theme(bgcolor,color)}>
                 <MUIDataTable
-                    title="Questions"
+                    title="Table"
                     data={rowsData()}
                     columns={columns}
                     options={options}
                 />
             </MuiThemeProvider>
-
         </React.Fragment>
     );
 }
