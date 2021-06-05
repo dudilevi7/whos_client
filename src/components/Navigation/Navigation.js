@@ -46,6 +46,9 @@ const Navigation = props => {
         setShowDrawer(false)
         history.push('/statistics')
     }
+    const onEditProfileClick = () => {
+        history.push('/ep')
+    }
     const onHomeClick = () => {
         setShowDrawer(false)
         history.push('/homepage')
@@ -60,7 +63,7 @@ const Navigation = props => {
                         <strong>{username}</strong>
                         <Divider/>
                         <div className="barBtn" onClick={onHomeClick}>בית</div>
-                        <div className="barBtn">פרופיל</div>
+                        <div className="barBtn" onClick={onEditProfileClick}>פרופיל</div>
                         <div className="barBtn" onClick={onStatsClick}>סטטיסטיקה</div>
                     </Drawer>
                 </React.Fragment>

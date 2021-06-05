@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect, Route, Switch, useHistory } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
+import EditProfile from '../containers/EditProfile/EditProfile';
 import GamePage from '../containers/GamePage/GamePage';
 import Homepage from '../containers/Homepage/Homepage';
 import Login from '../containers/Login/Login';
@@ -18,6 +19,7 @@ const Routes = () => {
             <Route exact path="/login" render = {() => (isLoggedIn ? <Redirect to= "/gamepage"/> : <Login/>  )}/>
             <Route exact path="/register" render = {() => (isLoggedIn ? <Redirect to= "/gamepage"/> : <Register/>  )}/>
             <Route exact path = '/statistics' render = {() => (isLoggedIn ? <Statistics/> : <Redirect to= "/"/> )}/>
+            <Route exact path = '/ep' render = {() => (isLoggedIn ? <EditProfile/> : <Redirect to= "/"/> )}/>
         </Switch>
     )
 }
