@@ -12,7 +12,9 @@ const Statistics = () => {
             const data = await fetchData(REACT_APP_WHOS_API + REACT_APP_STATS_ROUTE)
             if (data) {
                 console.log(data)
-                setStatsData(data)
+                setTimeout(() => {
+                    setStatsData(data)
+                }, 500);
             }
         }
         fetchStats()
@@ -23,7 +25,6 @@ const Statistics = () => {
             {!statsData && <LoaderSpinner />}
             { statsData && <CustomTable data={statsData} color="white" bgcolor="#0079ED" />}
         </div>)
-    // return <h1>bazman haaharon</h1>
 }
 
 export default Statistics
