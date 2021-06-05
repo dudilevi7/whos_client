@@ -15,7 +15,6 @@ const Statistics = () => {
                 setTimeout(() => {
                     setStatsData(data)
                 }, 500);
-               
             }
         }
         fetchStats()
