@@ -16,21 +16,23 @@ const Question = props => {
     const [hint , setHint] = useState(false);
 
     useEffect(()=>{
-        if(!correctAnswer)
-            setCorrectAnswer(props.data.answers[props.data.correctAnswer])
+        setCorrectAnswer(props.data.correctAnswer)
         gameService.shuffleArray(props.data.answers) //shuffle the order of the answers
         setData(props.data)
         setValue(props.data.answers[0])
         
-    },[props.data , correctAnswer]);
+    },[props.data ,correctAnswer])
 
     const onChangeAnswer = event => {
         setValue(event.target.value)
     }
     const onSendClicked = () => {
-        if(value === correctAnswer) alert('correct answer!')
-        else alert('wrong answer')
-        onSendAnswer()
+        const isCorrectAnswer = value === correctAnswer
+        if(isCorrectAnswer) 
+            alert('correct answer!')
+        else 
+            alert('wrong answer')
+        onSendAnswer(data.points, isCorrectAnswer)
         setHint(false)
     }
     const onUseTool = tool => {
@@ -46,11 +48,11 @@ const Question = props => {
         } 
     }
 
-    if (!data) return <LoaderSpinner/>;
+    if (!data) return <LoaderSpinner/>
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column' , alignContent:'center' }}>
-            {hint && <Hint>על שמו יש שדה תעופה</Hint>}
+            {hint && <Hint>{data.hint}</Hint>}
             <ResponsiveTypography variant="h5"><bdi>{data.question}</bdi></ResponsiveTypography>
             <FormControl component="fieldset">
                 <RadioGroup aria-label="question" name="question" value={value} onChange={onChangeAnswer} >

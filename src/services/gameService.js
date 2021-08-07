@@ -18,4 +18,7 @@ const removeRandomItem = (array,item) => {
     return array[rnd];
 }
 
-export default {shuffleArray, removeRandomItem}
+export default {
+    shuffleArray,
+    removeRandomItem,
+}
