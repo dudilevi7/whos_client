@@ -1,4 +1,4 @@
-import { Card, Container } from '@material-ui/core'
+import { Avatar, Card, Container } from '@material-ui/core'
 import React, { useEffect, useState } from 'react';
 import './GamePage.css'
 import { REACT_APP_WHOS_API , REACT_APP_QUES_ROUTE } from '../../constants/constants';
@@ -8,8 +8,9 @@ import gameService from '../../services/gameService';
 import Question from '../../components/Question/Question';
 
 const GamePage = props => {
-    const [questions, setQuestions] = useState();
-    const [currIndex, setCurrIndex] = useState(0);
+    const [questions, setQuestions] = useState()
+    const [currIndex, setCurrIndex] = useState(0)
+    const [pointsCount, setPointsCount] = useState(0)
 
     useEffect(() => {
         const fetchQuestions = async () => {
@@ -25,7 +26,10 @@ const GamePage = props => {
         fetchQuestions();
     }, [])
 
-    const onSendAnswer = () => {
+    const onSendAnswer = (points, isCorrectAnswer) => {
+        if(isCorrectAnswer) {
+            setPointsCount(prevPointsCount => prevPointsCount + points)
+        }
         if (currIndex < questions.length - 1)
             setCurrIndex(currIndex => currIndex + 1)
         else alert('game is end')
@@ -35,7 +39,10 @@ const GamePage = props => {
         <Container maxWidth="md">
             <Card className="cardContainer">
                 {!questions && <LoaderSpinner />}
-                {questions && <Question data={questions[currIndex]} onSendAnswer={onSendAnswer} />}
+                {questions &&
+                <div>
+                    <Question pointsCount={pointsCount} data={questions[currIndex]} onSendAnswer={onSendAnswer} />
+                </div> }
             </Card>
         </Container>
     )
