@@ -8,4 +8,4 @@ const Hint = props => {
                  <EmojiObjectsOutlined htmlColor="whitesmoke" fontSize="small" />   
             </div>)
 }
-export default Hint;
+export default Hint

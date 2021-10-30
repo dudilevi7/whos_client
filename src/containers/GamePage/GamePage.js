@@ -1,4 +1,4 @@
-import { Avatar, Card, Container } from '@material-ui/core'
+import { Card, Container } from '@material-ui/core'
 import React, { useEffect, useState } from 'react';
 import './GamePage.css'
 import { REACT_APP_WHOS_API , REACT_APP_QUES_ROUTE } from '../../constants/constants';
@@ -47,4 +47,4 @@ const GamePage = props => {
         </Container>
     )
 }
-export default GamePage;
+export default GamePage

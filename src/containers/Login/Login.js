@@ -1,10 +1,12 @@
-import { Avatar, Box, Button, Checkbox, Container, CssBaseline, FormControlLabel, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Avatar,  Button, Checkbox, Container, FormControlLabel, makeStyles, TextField, Typography } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setLogin } from '../../redux/auth/authActions';
-import { validateEmail, validatePassword, validateUsername } from '../../services/validateService';
+import { validatePassword, validateUsername } from '../../services/validateService';
+
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import GoogleAuthButton from './GoogleAuthButton';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -92,6 +94,7 @@ const Login = props => {
                     <Button className={classes.submit} startIcon={<VpnKeyIcon/>} fullWidth variant="contained" color="secondary" onClick={onSubmit} >
                         התחבר
                     </Button>
+                    <GoogleAuthButton />
                 </form>
             </div>
         </Container>

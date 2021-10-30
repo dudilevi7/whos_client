@@ -18,7 +18,7 @@ const removeRandomItem = (array,item) => {
     return array[rnd];
 }
 
-export default {
+module.exports= {
     shuffleArray,
     removeRandomItem,
 }

@@ -5,15 +5,15 @@ import LDButton from '../customs/LDButton';
 import ResponsiveTypography from '../customs/ResponsiveTypography';
 import { LoaderSpinner } from '../Exceptions/Exceptions';
 import GameTools from '../GameTools/GameTools';
-import Hint from '../Hint/Hint';
+import Hint from '../Hint/Hint'
 
 const Question = props => {
-    const { onSendAnswer } = props;
+    const { onSendAnswer } = props
 
     const [data,setData] = useState()
-    const [value ,setValue] = useState();
-    const [correctAnswer,setCorrectAnswer] = useState();
-    const [hint , setHint] = useState(false);
+    const [value ,setValue] = useState()
+    const [correctAnswer,setCorrectAnswer] = useState()
+    const [hint , setHint] = useState(false)
 
     useEffect(()=>{
         setCorrectAnswer(props.data.correctAnswer)
