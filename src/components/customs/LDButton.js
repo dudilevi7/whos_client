@@ -8,7 +8,6 @@ const useStyles = makeStyles({
         alignItems: 'center',
     },
     btn: {
-        offset: '10px',
         backgroundColor: props => `${props.bgcolor1}`,
         border: props => `2px solid ${props.border}`,
         position: 'relative',

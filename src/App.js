@@ -10,11 +10,6 @@ import Routes from './routes/routes';
 const App = props => {
   const authData = useSelector(state => state.auth);
 
-  useEffect(() => {
-    if (authData)
-      console.log(authData)
-  }, [authData])
-
   if (authData.isLoading) {
     return <LoaderSpinner />
   }
