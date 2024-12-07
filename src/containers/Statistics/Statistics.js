@@ -11,10 +11,7 @@ const Statistics = () => {
         const fetchStats = async () => {
             const data = await fetchData(REACT_APP_WHOS_API + REACT_APP_STATS_ROUTE)
             if (data) {
-                console.log(data)
-                setTimeout(() => {
-                    setStatsData(data)
-                }, 500);
+                setStatsData(data)
             }
         }
         fetchStats()

@@ -7,13 +7,15 @@ const initialState = {
     token : '', 
     error : '',
     isLoading : false,
+    isAdmin: false
 }
 
 const authReducer = (state = initialState , action = {} ) => {
     switch(action.type){
         case SET_LOGIN : {
+           const isAdmin = action?.userData?.role === "admin";
            return {
-               ...state , isLoggedIn : true ,userData : action.userData , token: '', error : '',  isLoading : false
+               ...state , isLoggedIn : true ,userData : action.userData , token: '', error : '', isAdmin, isLoading : false
            } 
         }
         case LOGIN_FAILED : {
@@ -35,12 +37,14 @@ const authReducer = (state = initialState , action = {} ) => {
         
         default : {
             const userData = loadFromLocalStorage('userData')
+            const isAdmin = userData?.role === "admin"; 
             if(userData)
                 return {
-                    ...state , isLoggedIn : true ,userData : userData , token: '', error : '',  isLoading : false
+                    ...state ,isLoggedIn : true ,userData : userData, isAdmin, token: '', error : '',  isLoading : false
                 }
             return state
         }
+        
     }
 }
 

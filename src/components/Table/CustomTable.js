@@ -51,8 +51,8 @@ const CustomTable = props => {
         {
             name: "",
             options: {
-                customBodyRender: usernameImg => {
-                  return ( <Avatar src={REACT_APP_WHOS_API+REACT_APP_IMG_ROUTE + usernameImg}  />)
+                customBodyRender: (usernameImg) => {
+                  return ( <Avatar src={usernameImg?.includes("https") ? usernameImg :REACT_APP_WHOS_API + REACT_APP_IMG_ROUTE + usernameImg}  />)
                 }
             }
         },

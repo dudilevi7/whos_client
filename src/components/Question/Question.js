@@ -7,35 +7,31 @@ import { LoaderSpinner } from '../Exceptions/Exceptions';
 import GameTools from '../GameTools/GameTools';
 import Hint from '../Hint/Hint'
 
-const Question = props => {
-    const { onSendAnswer } = props
+const Question = ({ data: question = {}, onSendAnswer = () => null }) => {
 
-    const [data,setData] = useState()
+    const [data, setData] = useState()
     const [value ,setValue] = useState()
     const [correctAnswer,setCorrectAnswer] = useState()
     const [hint , setHint] = useState(false)
 
     useEffect(()=>{
-        setCorrectAnswer(props.data.correctAnswer)
-        gameService.shuffleArray(props.data.answers) //shuffle the order of the answers
-        setData(props.data)
-        setValue(props.data.answers[0])
+        setCorrectAnswer(question.correctAnswer)
+        gameService.shuffleArray(question.answers) //shuffle the order of the answers
+        setData(question)
+        setValue(question.answers[0])
         
-    },[props.data ,correctAnswer])
+    }, [question ,correctAnswer])
 
     const onChangeAnswer = event => {
         setValue(event.target.value)
     }
+
     const onSendClicked = () => {
         const isCorrectAnswer = value === correctAnswer
-        if(isCorrectAnswer) 
-            alert('correct answer!')
-        else 
-            alert('wrong answer')
         onSendAnswer(data.points, isCorrectAnswer)
         setHint(false)
     }
-    const onUseTool = tool => {
+    const onUseTool = (tool) => {
         if (tool==='neg1') {
             const randomItem = gameService.removeRandomItem(data.answers,correctAnswer)
             const updatedArray = data.answers.filter(ques => ques!== randomItem)

@@ -25,23 +25,23 @@ export const setLogin = (username, password, rememberMe) => {
     }
 }
 export const setGoogleLogin = (data, rememberMe) => {
-    return async dispatch => {
-        // dispatch({type: LOGIN_START}) 
-        // const options = {
-        //     method: 'post',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(data)
-        // }
-        // const res = await fetchData(REACT_APP_WHOS_API+GOOGLE_LOGIN_PATH, options)
-        // if (res) {
-        //     dispatch({type : SET_LOGIN , userData : data })
-        //     if (rememberMe)
-        //         saveToLocalStorage('userData', data)
-        // }
-        // else 
-        //     dispatch({type : LOGIN_FAILED , error : 'Login has been failed!'})
-
-        return Promise.resolve(dispatch({ type: SET_LOGIN, userData: data.profile }))
+    return async (dispatch) => {
+        dispatch({ type: LOGIN_START })
+        const { name: username, imageUrl: img } = data?.profile || {}; 
+        const userData = { username, img, isGoogle: true }
+        const options = {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userData)
+        }
+        const res = await fetchData(REACT_APP_WHOS_API + REACT_APP_LOGIN_ROUTE, options)
+        if (res) {
+            dispatch({type : SET_LOGIN , userData: {...res, isGoogle: true} })
+            if (rememberMe)
+                saveToLocalStorage('userData', {...res, isGoogle: true})
+        }
+        else 
+         dispatch({type: LOGIN_FAILED , error: 'Login has been failed!'})
     }
 }
 export const setLogout = () => ({

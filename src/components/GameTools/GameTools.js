@@ -12,7 +12,7 @@ const GameTools = ({ onUseTool }) => {
         if (tool ==='lamp') setLampIcon(false)
         onUseTool(tool)
     }
-
+    if (!neg1Icon && !lampIcon) return null;
     return (<div className="toolsContainer">
             {neg1Icon &&  <div className="tool" onClick={()=>onClickTool('neg1')}>
                                 <ExposureNeg1Icon htmlColor="#2b2b2b" fontSize="large" />

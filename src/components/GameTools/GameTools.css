@@ -13,4 +13,11 @@
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    &:hover {
+        color: white;
+        background-color: var(--primary);
+        svg {
+            color: white;
+        }
+    }
 }
