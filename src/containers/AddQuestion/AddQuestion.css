@@ -1,0 +1,7 @@
+.clause {
+    color: var(--secondary);
+    height: 24px;
+    width: 24px;
+    background-color: var(--primary);
+    border-radius: 20px;
+}

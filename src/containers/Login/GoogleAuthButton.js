@@ -3,12 +3,11 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login'
 import { useDispatch } from 'react-redux'
 import { GOOGLE_CLIENT_ID } from '../../constants/constants'
 import isTokenExpiry from '../../lib/is-token-expiry'
-import { setGoogleLogin, setLogin, setLogout } from '../../redux/auth/authActions'
+import { setGoogleLogin, setLogout } from '../../redux/auth/authActions'
 
 
 const Logout = ({ onSuccessLogout }) => {
     const onLogoutSuccess = () => {
-        console.log('logout success')
         onSuccessLogout()
     }
     return (
@@ -24,11 +23,9 @@ const Logout = ({ onSuccessLogout }) => {
 const Login = ({ onSuccessLogin }) => {
 
     const onSuccess = (res) => {
-        console.log('login success , current user', res)
         onSuccessLogin(res)
     }
     const onFailure = (res) => {
-        console.log('login failure , res: ', res)
     }
 
     return (

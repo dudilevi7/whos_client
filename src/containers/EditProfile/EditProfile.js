@@ -30,6 +30,8 @@ const EditProfile = props => {
     const classes = useStyles();
     const usernameImg = useSelector(state => state.auth.userData.img);
     const currentUsername = useSelector(state => state.auth.userData.username);
+    const isGoogle = useSelector(state => state.auth.userData.isGoogle);
+    const imgUrl = isGoogle ? usernameImg : REACT_APP_WHOS_API + REACT_APP_IMG_ROUTE + usernameImg;
     
     const [ nextUsername, setNextUsername ] = useState();
     const [ file , setFile ] = useState()
@@ -38,7 +40,7 @@ const EditProfile = props => {
     useEffect(()=>{
         if(!nextUsername)
             setNextUsername(currentUsername)
-    },[])
+    }, [currentUsername, nextUsername])
 
     const usernameChangeHandler = (event) =>{
         setNextUsername(event.target.value)
@@ -51,7 +53,6 @@ const EditProfile = props => {
     const onUpdateProfile = () => {
         if (validateUsername(nextUsername))
         {
-            console.log(nextUsername, currentUsername)
             const obj = { username: nextUsername ,preUsername: currentUsername}
             const json = JSON.stringify(obj);
 
@@ -74,7 +75,7 @@ const EditProfile = props => {
                 <form action="#">
                     <div className="imgUpd">
                         
-                        <img className={classes.profile} src={REACT_APP_WHOS_API + REACT_APP_IMG_ROUTE + usernameImg} alt="profileImg" />
+                        <img className={classes.profile} src={imgUrl} alt="profileImg" />
                         <Typography variant="h6">{currentUsername}</Typography>
                         <label htmlFor="upload-file">
                             <input id="upload-file" type="file" onChange={fileHandler} name="upload-file" accept="image/*" style={{ display: 'none' }} />

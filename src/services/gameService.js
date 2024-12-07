@@ -1,4 +1,4 @@
-const shuffleArray = array => {
+const shuffleArray = (array) => {
     let currentIndex = array.length , tempValue , randomIndex;
   
     while (currentIndex!== 0) {
@@ -10,7 +10,7 @@ const shuffleArray = array => {
         array[randomIndex] = tempValue;
     }
 }
-const removeRandomItem = (array,item) => {
+const removeRandomItem = (array, item) => {
     let rnd = Math.floor(Math.random()*4)
     while (array[rnd] === item){
         rnd = Math.floor(Math.random()*4)

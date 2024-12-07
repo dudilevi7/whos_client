@@ -2,13 +2,12 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-    background-color: #0079ED;
-    color: white;
-    margin-bottom: 5px;
-    padding : 5px;
-    animation: changeColor 1s ;
-    transform: rotate(0deg) scale(1) translateZ(0);
-    transition: all 0.5s cubic-bezier(.8,1.8,.75,.75);
+  background-color: #0079ED;
+  color: white;
+  padding : 5px;
+  animation: changeColor 1s ;
+  transform: rotate(0deg) scale(1) translateZ(0);
+  transition: all 0.5s cubic-bezier(.8,1.8,.75,.75);
 }
 
 

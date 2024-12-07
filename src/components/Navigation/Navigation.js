@@ -1,76 +1,66 @@
 import React, { useState } from 'react';
-import { Avatar, Divider, Drawer, makeStyles, Typography } from '@material-ui/core';
-import './Navigation.css';
-import { Close } from '@material-ui/icons';
+import { Avatar } from '@material-ui/core';
+import { Close, DashboardOutlined } from '@material-ui/icons';
 import LDButton from '../customs/LDButton';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLogout } from '../../redux/auth/authActions';
 import { useHistory } from 'react-router';
-import { REACT_APP_WHOS_API,REACT_APP_IMG_ROUTE } from '../../constants/constants';
+import { REACT_APP_WHOS_API, REACT_APP_IMG_ROUTE } from '../../constants/constants';
+import './Navigation.css';
 
-const useStyles = makeStyles({
-    root : {
-        cursor : 'pointer',
-        boxShadow : '0px 0px 5px 0px #2b2b2b',
-        '&:hover': {
-            opacity : '75%'
-        }
-    },
-    root2 : {
-        cursor : 'pointer',
-        boxShadow : '0px 0px 5px 0px #2b2b2b',
-        '&:hover': {
-            opacity : '75%'
-        },
-        marginInline : 'auto',
-        marginBlock : '10px'
-    }
-})
+const imgServer = REACT_APP_WHOS_API + REACT_APP_IMG_ROUTE;
 
 const Navigation = props => {
     const [showDrawer, setShowDrawer] = useState(false);
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     const usernameImg = useSelector(state => state.auth.userData.img);
-    const username = useSelector(state=> state.auth.userData.username);
+    const username = useSelector(state => state.auth.userData.username);
+    const isGoogle = useSelector(state => state.auth.userData.isGoogle);
+    const isAdmin = useSelector(state => state.auth.isAdmin) || false;
+    const imgUrl = `${isGoogle ?  "" : imgServer }` + usernameImg;
+
 
     const dispatch = useDispatch();
-    const classes = useStyles();
-    let history = useHistory();
+    const history = useHistory();
 
     const onLogoutClick = () => {
         dispatch(setLogout());
         history.push('/')
     }
-    const onStatsClick = () => {
-        setShowDrawer(false)
-        history.push('/statistics')
-    }
+    const onStatsClick = () => onChangeScreen('statistics')
     const onEditProfileClick = () => {
         history.push('/ep')
     }
-    const onHomeClick = () => {
-        setShowDrawer(false)
-        history.push('/homepage')
+    const onHomeClick = () => onChangeScreen('homepage')
+    const onChangeScreen = (path) => {
+        setShowDrawer(false);
+        history.push(`/${path}`);
     }
+    const onAddQuestions = () => onChangeScreen('add-question') 
     return (
         <div>
             <div className="webBar">
                 <React.Fragment key="right">
-                    <Drawer variant='persistent' anchor='right' open={showDrawer} onClose={() => setShowDrawer(false)} transitionDuration={500}>
-                        <Close htmlColor='black' onClick={() => setShowDrawer(false)} />
-                        <Avatar className={classes.root2} src={REACT_APP_WHOS_API+REACT_APP_IMG_ROUTE + usernameImg} onClick={() => setShowDrawer(true)}  />
-                        <strong>{username}</strong>
-                        <Divider/>
-                        <div className="barBtn" onClick={onHomeClick}>בית</div>
-                        <div className="barBtn" onClick={onEditProfileClick}>פרופיל</div>
-                        <div className="barBtn" onClick={onStatsClick}>סטטיסטיקה</div>
-                    </Drawer>
+                        {showDrawer && 
+                        <div className="col g5 drawers">
+                            <Close htmlColor='black' className='closeIcon' onClick={() => setShowDrawer(false)} />
+                            <Avatar className="userImg drawer" src={imgUrl} onClick={() => setShowDrawer(true)}  />
+                            <strong>{username}</strong>
+                            {isAdmin && <div className="barBtn row g5" onClick={onAddQuestions}>
+                                פאנל ניהול
+                                <DashboardOutlined className="regularIcon" />
+                                </div>
+                                }
+                            <div className="barBtn" onClick={onHomeClick}>בית</div>
+                            {!isGoogle && <div className="barBtn" onClick={onEditProfileClick}>פרופיל</div>}
+                            <div className="barBtn stats" onClick={onStatsClick}>סטטיסטיקה</div>
+                        </div>}
                 </React.Fragment>
                 {isLoggedIn &&
                     (
                         <div className="logout">
-                            <Avatar className={classes.root} src={REACT_APP_WHOS_API+REACT_APP_IMG_ROUTE + usernameImg} onClick={() => setShowDrawer(true)}  />
+                            <Avatar className="userImg pointer" src={imgUrl} onClick={() => setShowDrawer(true)}  />
                             <LDButton onClick={onLogoutClick} startIcon={<ExitToAppIcon />} size="small" bgcolor1="whitesmoke" border="none" color="#0079ED" shadow='transparent'>התנתק</LDButton>
                         </div>
                     )

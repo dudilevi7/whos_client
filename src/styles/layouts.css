@@ -1,0 +1,27 @@
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.center { justify-content: center;}
+.ceneterd { text-align: center ;}
+.bold { font-weight: bold};
+.pointer { cursor: pointer; }
+.regularIcon { 
+    width: 16px !important;
+    height: 16px !important;
+}
+.g5 {
+    gap: 5px;
+}
+.g10 { gap: 10px; }
+.g20 { gap: 20px; }
+.pad10 {padding: 10px;}
+.pad15 {padding: 15px;} 
+.pad20 {padding: 20px;}
