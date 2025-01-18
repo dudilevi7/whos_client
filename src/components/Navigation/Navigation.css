@@ -21,11 +21,12 @@
     font-size: 17px;
     padding: 5px 0px;
     cursor: pointer;
-    color: #2b2b2b;
+    color: white;
     font-weight: bold;
     width: 100%;
     &:hover {
         background-color: white;
+        color: #2b2b2b;
         transition: all 0.4s;
     }
     &.stats {
@@ -35,11 +36,13 @@
 .divider {
     color: var(--third);
 }
+.drawers__username {
+    margin: 0px 10px;
+}
 .drawers {
     border-radius: 0px 0px 0px 10px;
     position: absolute;
     animation: fadeIn 0.5s;
-    width: 117px;
     right: 0;
     top: 0;
     z-index: 1000;
@@ -53,15 +56,11 @@
     align-self: flex-end;
 }
 @media only screen and (max-width: 680px) {
-    
     .barBtn {
         margin-inline : 5px;
         font-size: 17px;
         padding: 5px;
         cursor: pointer;
-        color: #2b2b2b;
         font-weight: bold;
-        
     }
-
 }

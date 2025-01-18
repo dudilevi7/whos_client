@@ -46,7 +46,7 @@ const Navigation = props => {
                         <div className="col g5 drawers">
                             <Close htmlColor='black' className='closeIcon' onClick={() => setShowDrawer(false)} />
                             <Avatar className="userImg drawer" src={imgUrl} onClick={() => setShowDrawer(true)}  />
-                            <strong>{username}</strong>
+                            <strong className='drawers__username'>{username}</strong>
                             {isAdmin && <div className="barBtn row g5" onClick={onAddQuestions}>
                                 פאנל ניהול
                                 <DashboardOutlined className="regularIcon" />
