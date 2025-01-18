@@ -4,7 +4,7 @@ import './Exceptions.css';
 
 export const ErrorPage = ({ error })=>{
     return (
-        <div className="expContainer">
+        <div className="expContainer basic-100">
             <h2>Error Message!</h2>
             <div className="errAlert">
                 <strong>{error}</strong>
@@ -13,7 +13,7 @@ export const ErrorPage = ({ error })=>{
     )
 }
 export const LoaderSpinner = () => {
-    return (<div className="expContainer">
+    return (<div className="expContainer basic-100">
                 <CircularProgress color="secondary"/>
                 <div className = "loadAlert">
                      <strong>Loading...</strong>

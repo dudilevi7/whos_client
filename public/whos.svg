@@ -1,0 +1,15 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+	<title>New Project</title>
+	<style>
+		tspan { white-space:pre } 
+		.s0 { fill: #0079ed } 
+		.s1 { fill: #000000 } 
+		.t2 { font-size: 27px;line-height: 0px;text-transform: uppercase;fill: #ffffff;font-weight: 400;font-family: "DejaVuSansCondensed", "DejaVu Sans Condensed" } 
+	</style>
+	<path id="Shape 1" fill-rule="evenodd" class="s0" d="m100 0v62h-111v-62z"/>
+	<path id="Shape 1 copy" fill-rule="evenodd" class="s1" d="m104 53v62h-111v-62z"/>
+	<text id="Who's" style="transform: matrix(1,0,0,1,6.112,60.024)" >
+		<tspan x="0" y="0" class="t2">W</tspan><tspan  y="0" class="t2">H</tspan><tspan  y="0" class="t2">O</tspan><tspan  y="0" class="t2">'</tspan><tspan  y="0" class="t2">S</tspan><tspan  y="0" class="t2">
+</tspan>
+	</text>
+</svg>
